@@ -2,6 +2,7 @@ import platform
 import subprocess
 import sys
 import os
+from createRepo import createRepo
 
 # print(platform.platform())
 
@@ -32,7 +33,12 @@ def getPath():
             print(result)
         
         except FileNotFoundError:
-            pass
+            os.chdir(PATH)
+            os.mkdir('Workspace')
+            PATH = PATH + 'Workspace'
+        
+        except FileExistsError:
+            PATH = PATH + 'Workspace'
         
         finally:
             return PATH
@@ -50,7 +56,12 @@ def getPath():
             print(result)
         
         except FileNotFoundError:
-            pass
+            os.chdir(PATH)
+            os.mkdir('Workspace')
+            PATH = PATH + 'Workspace'
+        
+        except FileExistsError:
+            PATH = PATH + 'Workspace'
         
         finally:
             return PATH
@@ -85,6 +96,7 @@ def gitInit():
 
 def gitAdd():
     try:
+        os.system('echo > README.md')
         result = execCmd(['git', 'add', '.'])
         out = result.stdout.readline().decode('utf-8').strip()
         print(out)
@@ -111,8 +123,19 @@ def gitPush():
     except AttributeError:
         print(result)
 
+def gitRemote(url):
+    try:
+        result = execCmd(['git', 'remote', 'add', 'origin', url])
+        out = result.stdout.readline().decode('utf-8').strip()
+        print(out)
+
+    except AttributeError:
+        print(result)
+
+
 def openCode():
     try:
+        '''didn't work with subprocess. need to figure out why and reduce the no. of imports'''
         # result = execCmd(['code', '.'])
         # out = result.stdout.readline().decode('utf-8').strip()
         # print(out)
@@ -128,7 +151,12 @@ if __name__ == "__main__":
     name = sys.argv[-1]
     createFolder(name)
     os.chdir(name)
-    gitInit()
+    gitInit() 
+    gitAdd()
+    gitCommit()
+    gitLink = createRepo(name)
+    gitRemote(gitLink)
+    gitPush()
     # print(name)
     openCode()
     
