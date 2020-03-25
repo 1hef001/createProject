@@ -28,19 +28,24 @@ def getPath():
             with open('path.txt', 'r') as f:
                 PATH = f.readline()
                 f.close()
-        
+            print('main')
+            
         except AttributeError:
             print(result)
         
         except FileNotFoundError:
-            os.chdir(PATH)
-            os.mkdir('Workspace')
-            PATH = PATH + 'Workspace'
+            try:
+                os.chdir(PATH)
+                os.mkdir('Workspace')
+                PATH = PATH + 'Workspace'
+                # print('FilenotFOund')
         
-        except FileExistsError:
-            PATH = PATH + 'Workspace'
+            except FileExistsError:
+                PATH = PATH + 'Workspace'
+                # print('FileExistsError')
         
         finally:
+            # print('finally')
             return PATH
 
     else:
@@ -56,12 +61,15 @@ def getPath():
             print(result)
         
         except FileNotFoundError:
-            os.chdir(PATH)
-            os.mkdir('Workspace')
-            PATH = PATH + 'Workspace'
+            try:
+                os.chdir(PATH)
+                os.mkdir('Workspace')
+                PATH = PATH + 'Workspace'
+                # print('FilenotFOund')
         
-        except FileExistsError:
-            PATH = PATH + 'Workspace'
+            except FileExistsError:
+                PATH = PATH + 'Workspace'
+                # print('FileExistsError')
         
         finally:
             return PATH
@@ -148,6 +156,7 @@ def openCode():
 if __name__ == "__main__":
     # print(sys.argv[1])
     os.chdir(getPath())
+    # print(os.getcwd())
     # print('path')
     name = sys.argv[-1]
     createFolder(name)

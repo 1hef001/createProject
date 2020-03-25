@@ -1,7 +1,7 @@
 # import os
 
 from cred import username, password
-
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import selenium.common.exceptions as sexep
@@ -9,7 +9,9 @@ import selenium.common.exceptions as sexep
 
 def createRepo(repository_name):
     # PATH = os.path.join(path, r'/chromedriver.exe')
-    driver = webdriver.Chrome(executable_path=r'C:/Webdrivers/chromedriver.exe')
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    driver = webdriver.Chrome(executable_path=r'C:/Webdrivers/chromedriver.exe', chrome_options=chrome_options)
 
     driver.get('https://github.com/login')
     driver.implicitly_wait(50)
