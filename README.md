@@ -6,8 +6,11 @@ A simple effort towards automating git repo creation under the same name as the 
 
 
 **Requirements :**
+
     1. Python
+
     2. Selenium
+    
     3. Chromedriver
 
 ## Create folder as said in createRepo or update path of the same to chromedriver
