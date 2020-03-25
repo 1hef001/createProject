@@ -4,6 +4,10 @@
 
 A simple effort towards automating git repo creation under the same name as the project folder with an empty README.md
 
+## Before you execute the script:
+
+Update your github credentials in cred.py
+
 
 **Requirements :**
 
