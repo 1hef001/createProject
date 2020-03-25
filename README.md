@@ -30,21 +30,3 @@ py essentials.py <project_name>
 ```
 py essentials.py testrepo
 ```
-
-
-**Uninstalling packages one by one:**
-```
-packpy uninstall <packagename>
-```
-
-**For Example:**
-```
-packpy uninstall pandas
-packpy uninstall idleTime==0.5.0.2
-```
-
-
-**Uninstalling packages from requirement.txt:**
-```
-packpy uninstall -r requirements.txt
-```
