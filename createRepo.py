@@ -1,4 +1,6 @@
-import os
+# import os
+
+from cred import username, password
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -7,16 +9,16 @@ import selenium.common.exceptions as sexep
 
 def createRepo(repository_name):
     # PATH = os.path.join(path, r'/chromedriver.exe')
-    driver = webdriver.Chrome(executable_path=r'C:/Webdrivers')
+    driver = webdriver.Chrome(executable_path=r'C:/Webdrivers/chromedriver.exe')
 
     driver.get('https://github.com/login')
     driver.implicitly_wait(50)
 
-    with open('cred.txt', 'r') as f:
-        credentials = f.readlines()
-        username = credentials[0]
-        password = credentials[1]
-        f.close()
+    # with open('cred.txt', 'r') as f:
+    #     credentials = f.readlines()
+    #     username = credentials[0].strip()
+    #     password = credentials[1].strip()
+    #     f.close()
 
     assert 'GitHub' in driver.title
 
@@ -38,9 +40,13 @@ def createRepo(repository_name):
     repo.clear()
 
     repo.send_keys(repository_name)
-    repo.send_keys(Keys.RETURN)
+    driver.implicitly_wait(50)
+    submit = driver.find_elements_by_xpath('//*[@id="new_repository"]/div[3]/button')[0]
+    submit.submit()
 
-    gitURL = driver.current_url + '.git'
+    driver.implicitly_wait(50)
+    git = driver.find_element_by_id('empty-setup-clone-url')
+    gitURL = git.get_attribute('value')
     
     driver.quit()
 
