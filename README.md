@@ -34,3 +34,13 @@ py essentials.py <project_name>
 ```
 py essentials.py testrepo
 ```
+
+**Specifying path:**
+```
+py essentials.py PATH=<path> <repo-name>
+```
+
+***Note: there should be no space between 'PATH' '=' and 'given-path'. Otherwise this case fails***
+```
+py essentials.py PATH=C:/Users/<user>/MyProjects test-repo
+```
