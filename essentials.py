@@ -22,18 +22,18 @@ def getPath():
     '''
     if 'Windows' in platform.platform():
         try:
-            result = execCmd('whoami')
-            user = result.stdout.readline().decode('utf-8').split('\\')[1].strip()
-            PATH = 'C:/Users/' + user + '/Documents/'
-            with open('path.txt', 'r') as f:
-                PATH = f.readline()
-                f.close()
-            print('main')
+            com = sys.argv[1]
+            if 'path' not in com.lower():
+                raise FileNotFoundError
+            PATH = com.split('=')[1]
             
         except AttributeError:
             print(result)
         
         except FileNotFoundError:
+            result = execCmd('whoami')
+            user = result.stdout.readline().decode('utf-8').split('\\')[1].strip()
+            PATH = 'C:/Users/' + user + '/Documents/'
             try:
                 os.chdir(PATH)
                 os.mkdir('Workspace')
@@ -50,17 +50,18 @@ def getPath():
 
     else:
         try:
-            result = execCmd('whoami')
-            user = result.stdout.readline().decode('utf-8').strip()
-            PATH = user + '/Documents/'
-            with open('path.txt', 'r') as f:
-                PATH = f.readline()
-                f.close()
+            com = sys.argv[1]
+            if 'path' not in com.lower():
+                raise FileNotFoundError
+            PATH = com.split('=')[1]
         
         except AttributeError:
             print(result)
         
         except FileNotFoundError:
+            result = execCmd('whoami')
+            user = result.stdout.readline().decode('utf-8').strip()
+            PATH = user + '/Documents/'
             try:
                 os.chdir(PATH)
                 os.mkdir('Workspace')
@@ -156,7 +157,7 @@ def openCode():
 if __name__ == "__main__":
     # print(sys.argv[1])
     os.chdir(getPath())
-    # print(os.getcwd())
+    print(os.getcwd())
     # print('path')
     name = sys.argv[-1]
     createFolder(name)
