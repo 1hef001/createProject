@@ -21,26 +21,29 @@ Update your github credentials in cred.py
 
 **Installing createProject**
 
-Clone the repository from git and use as is.
-Doesn't support installations yet. But, will soon. Wait for it.
+Install using the given command after cloning, make sure to update the cred.py in the createProject folder before installing
+
+```
+python setup.py install
+```
 
 
 **Usage:**
 ```
-py essentials.py <project_name>
+createProject <project_name>
 ```
 
 **For Example:**
 ```
-py essentials.py testrepo
+createProject testrepo
 ```
 
 **Specifying path:**
 ```
-py essentials.py PATH=<path> <repo-name>
+createProject PATH=<path> <repo-name>
 ```
 
 ***Note: there should be no space between 'PATH' '=' and 'given-path'. Otherwise this case fails***
 ```
-py essentials.py PATH=C:/Users/<user>/MyProjects test-repo
+createProject PATH=C:/Users/<user>/MyProjects test-repo
 ```
