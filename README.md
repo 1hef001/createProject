@@ -1,5 +1,7 @@
 # createProject
 
+Project dropped. Check [git-create](https://github.com/1hef001/git-create) for an upgraded version
+
 ## Sweat no more with creation of new projects
 
 A simple effort towards automating git repo creation under the same name as the project folder with an empty README.md
